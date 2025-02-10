@@ -53,15 +53,15 @@ Expression components
 12
 3/4
 5.6
-' , ? ! . * - ^ _ > + ~ ( ) \( \) [ ] : / = |
+' , ? ! . - ^ _ > + ~ ( ) \( \) [ ] : / = |
 \< \> \!
 \78
 
 ---
 
 (lilypond_program
-  (unsigned_integer)
-  (unsigned_integer)
+  (duration)
+  (duration)
   (fraction)
   (decimal_number)
   (punctuation)
@@ -85,10 +85,9 @@ Expression components
   (punctuation)
   (punctuation)
   (punctuation)
-  (punctuation)
-  (dynamic)
-  (dynamic)
-  (dynamic)
+  (hairpin)
+  (hairpin)
+  (hairpin)
   (instrument_string_number))
 
 
@@ -124,40 +123,45 @@ c1 2 4 8 16 32 64. 128
 ---
 
 (lilypond_program
-  (symbol)
-  (unsigned_integer)
-  (unsigned_integer)
-  (unsigned_integer)
-  (unsigned_integer)
-  (unsigned_integer)
-  (unsigned_integer)
-  (unsigned_integer)
-  (punctuation)
-  (unsigned_integer))
+  (note
+   (duration))
+  (duration)
+  (duration)
+  (duration)
+  (duration)
+  (duration)
+  (duration)
+  (duration))
 
 
 ===
 Ties and scaled durations
 ===
 
-c2*2/3 c~c c2 *%{%}2%{%}
+c2*2/3 c~c c2 <c e g>2~ <c e g>4
 
 ---
 
 (lilypond_program
-  (symbol)
-  (unsigned_integer)
+  (note
+    (duration
+      (duration_scale)))
+  (note)
   (punctuation)
-  (fraction)
-  (symbol)
+  (note)
+  (note
+   (duration))
+  (chord
+   (note)
+   (note)
+   (note)
+   (duration))
   (punctuation)
-  (symbol)
-  (symbol)
-  (unsigned_integer)
-  (punctuation)
-  (comment)
-  (unsigned_integer)
-  (comment))
+  (chord
+   (note)
+   (note)
+   (note)
+   (duration)))
 
 
 ===
@@ -169,18 +173,18 @@ r8 c[ r c] s2 | R1
 ---
 
 (lilypond_program
-  (symbol)
-  (unsigned_integer)
-  (symbol)
+  (rest
+   (duration))
+  (note)
   (punctuation)
-  (symbol)
-  (symbol)
+  (rest)
+  (note)
   (punctuation)
-  (symbol)
-  (unsigned_integer)
+  (rest
+    (duration))
   (punctuation)
-  (symbol)
-  (unsigned_integer))
+  (rest
+    (duration)))
 
 
 ===
@@ -192,27 +196,27 @@ c8-^ c-+ c-- c-! c-> c-. c4-_
 ---
 
 (lilypond_program
-  (symbol)
-  (unsigned_integer)
+  (note
+   (duration))
   (punctuation)
   (punctuation)
-  (symbol)
+  (note)
   (punctuation)
   (punctuation)
-  (symbol)
+  (note)
   (punctuation)
   (punctuation)
-  (symbol)
+  (note)
   (punctuation)
   (punctuation)
-  (symbol)
+  (note)
   (punctuation)
   (punctuation)
-  (symbol)
+  (note)
   (punctuation)
   (punctuation)
-  (symbol)
-  (unsigned_integer)
+  (note
+   (duration))
   (punctuation)
   (punctuation))
 
@@ -226,14 +230,14 @@ c\< c\! c\> c\!
 ---
 
 (lilypond_program
-  (symbol)
-  (dynamic)
-  (symbol)
-  (dynamic)
-  (symbol)
-  (dynamic)
-  (symbol)
-  (dynamic))
+  (note)
+  (hairpin)
+  (note)
+  (hairpin)
+  (note)
+  (hairpin)
+  (note)
+  (hairpin))
 
 
 ===
@@ -246,13 +250,13 @@ Chords
 
 (lilypond_program
   (chord
-    (symbol)
-    (symbol)
+    (note)
+    (note)
     (punctuation)
     (punctuation)
-    (symbol)
-    (instrument_string_number))
-  (unsigned_integer)
+    (note)
+    (instrument_string_number)
+    (duration))
   (symbol))
 
 
@@ -266,10 +270,10 @@ Parallel music
 
 (lilypond_program
   (parallel_music
-    (symbol)
-    (unsigned_integer)
+    (note
+      (duration))
     (parallel_music_separator)
-    (symbol)))
+    (note)))
 
 
 ===
@@ -281,30 +285,30 @@ c8( c) c\( c\) c\=1( c\=1) c\=%{%}"label"\( c\="label"%{%}\)
 ---
 
 (lilypond_program
-  (symbol)
-  (unsigned_integer)
+  (note
+    (duration))
   (punctuation)
-  (symbol)
+  (note)
   (punctuation)
-  (symbol)
+  (note)
   (punctuation)
-  (symbol)
+  (note)
   (punctuation)
-  (symbol)
+  (note)
   (escaped_word)
-  (unsigned_integer)
+  (duration)
   (punctuation)
-  (symbol)
+  (note)
   (escaped_word)
-  (unsigned_integer)
+  (duration)
   (punctuation)
-  (symbol)
+  (note)
   (escaped_word)
   (comment)
   (string
     (string_fragment))
   (punctuation)
-  (symbol)
+  (note)
   (escaped_word)
   (string
     (string_fragment))
@@ -321,17 +325,17 @@ c4^"up" c_"down" c2-"default"
 ---
 
 (lilypond_program
-  (symbol)
-  (unsigned_integer)
+  (note
+    (duration))
   (punctuation)
   (string
     (string_fragment))
-  (symbol)
+  (note)
   (punctuation)
   (string
     (string_fragment))
-  (symbol)
-  (unsigned_integer)
+  (note
+    (duration))
   (punctuation)
   (string
     (string_fragment)))
@@ -346,17 +350,15 @@ ces'!4 ces,? c='2
 ---
 
 (lilypond_program
-  (symbol)
+  (note)
+  (punctuation)
+  (duration)
+  (note)
+  (punctuation)
+  (note)
   (punctuation)
   (punctuation)
-  (unsigned_integer)
-  (symbol)
-  (punctuation)
-  (punctuation)
-  (symbol)
-  (punctuation)
-  (punctuation)
-  (unsigned_integer))
+  (duration))
 
 
 ===
@@ -369,9 +371,9 @@ Ligatures
 
 (lilypond_program
   (ligature)
-  (symbol)
-  (unsigned_integer)
-  (symbol)
+  (note
+    (duration))
+  (note)
   (ligature))
 
 
@@ -444,8 +446,8 @@ Embedded Scheme and LilyPond
                       (scheme_list
                         (scheme_symbol))
                       (scheme_embedded_lilypond
-                        (symbol)
-                        (unsigned_integer)))
+                        (rest
+                          (duration))))
                     (scheme_list
                       (scheme_symbol)
                       (scheme_number))))))))))))

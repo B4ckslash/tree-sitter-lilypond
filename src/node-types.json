@@ -39,7 +39,7 @@
           "named": true
         },
         {
-          "type": "dynamic",
+          "type": "duration",
           "named": true
         },
         {
@@ -63,6 +63,10 @@
           "named": true
         },
         {
+          "type": "hairpin",
+          "named": true
+        },
+        {
           "type": "instrument_string_number",
           "named": true
         },
@@ -72,6 +76,10 @@
         },
         {
           "type": "named_context",
+          "named": true
+        },
+        {
+          "type": "note",
           "named": true
         },
         {
@@ -91,6 +99,10 @@
           "named": true
         },
         {
+          "type": "rest",
+          "named": true
+        },
+        {
           "type": "string",
           "named": true
         },
@@ -106,9 +118,19 @@
     }
   },
   {
-    "type": "dynamic",
+    "type": "duration",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "duration_scale",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "embedded_scheme",
@@ -226,7 +248,7 @@
           "named": true
         },
         {
-          "type": "dynamic",
+          "type": "duration",
           "named": true
         },
         {
@@ -246,6 +268,10 @@
           "named": true
         },
         {
+          "type": "hairpin",
+          "named": true
+        },
+        {
           "type": "instrument_string_number",
           "named": true
         },
@@ -255,6 +281,10 @@
         },
         {
           "type": "named_context",
+          "named": true
+        },
+        {
+          "type": "note",
           "named": true
         },
         {
@@ -274,6 +304,10 @@
           "named": true
         },
         {
+          "type": "rest",
+          "named": true
+        },
+        {
           "type": "string",
           "named": true
         },
@@ -287,6 +321,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "hairpin",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "ligature",
@@ -315,7 +354,7 @@
           "named": true
         },
         {
-          "type": "dynamic",
+          "type": "duration",
           "named": true
         },
         {
@@ -335,6 +374,10 @@
           "named": true
         },
         {
+          "type": "hairpin",
+          "named": true
+        },
+        {
           "type": "instrument_string_number",
           "named": true
         },
@@ -344,6 +387,10 @@
         },
         {
           "type": "named_context",
+          "named": true
+        },
+        {
+          "type": "note",
           "named": true
         },
         {
@@ -360,6 +407,10 @@
         },
         {
           "type": "quoted_identifier",
+          "named": true
+        },
+        {
+          "type": "rest",
           "named": true
         },
         {
@@ -409,6 +460,21 @@
     }
   },
   {
+    "type": "note",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "duration",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "parallel_music",
     "named": true,
     "fields": {},
@@ -429,7 +495,7 @@
           "named": true
         },
         {
-          "type": "dynamic",
+          "type": "duration",
           "named": true
         },
         {
@@ -449,6 +515,10 @@
           "named": true
         },
         {
+          "type": "hairpin",
+          "named": true
+        },
+        {
           "type": "instrument_string_number",
           "named": true
         },
@@ -458,6 +528,10 @@
         },
         {
           "type": "named_context",
+          "named": true
+        },
+        {
+          "type": "note",
           "named": true
         },
         {
@@ -478,6 +552,10 @@
         },
         {
           "type": "quoted_identifier",
+          "named": true
+        },
+        {
+          "type": "rest",
           "named": true
         },
         {
@@ -533,6 +611,21 @@
       "types": [
         {
           "type": "escaped_word",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "rest",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "duration",
           "named": true
         }
       ]
@@ -635,7 +728,7 @@
           "named": true
         },
         {
-          "type": "dynamic",
+          "type": "duration",
           "named": true
         },
         {
@@ -655,6 +748,10 @@
           "named": true
         },
         {
+          "type": "hairpin",
+          "named": true
+        },
+        {
           "type": "instrument_string_number",
           "named": true
         },
@@ -664,6 +761,10 @@
         },
         {
           "type": "named_context",
+          "named": true
+        },
+        {
+          "type": "note",
           "named": true
         },
         {
@@ -680,6 +781,10 @@
         },
         {
           "type": "quoted_identifier",
+          "named": true
+        },
+        {
+          "type": "rest",
           "named": true
         },
         {
@@ -1304,6 +1409,10 @@
     "named": false
   },
   {
+    "type": "R",
+    "named": false
+  },
+  {
     "type": "[",
     "named": false
   },
@@ -1360,6 +1469,10 @@
     "named": true
   },
   {
+    "type": "duration_scale",
+    "named": true
+  },
+  {
     "type": "embedded_scheme_prefix",
     "named": true
   },
@@ -1382,6 +1495,14 @@
   {
     "type": "parallel_music_separator",
     "named": true
+  },
+  {
+    "type": "r",
+    "named": false
+  },
+  {
+    "type": "s",
+    "named": false
   },
   {
     "type": "scheme_boolean",

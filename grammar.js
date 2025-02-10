@@ -51,16 +51,21 @@ module.exports = grammar({
           $.named_context,
           $.expression_block,
           $.parallel_music,
-          $.chord,
           $.escaped_word,
           $.quoted_identifier,
+          $.escaped_word,
+          $.quoted_identifier,
+          $.note,
+          $.rest,
+          $.chord,
+          $.duration,
           $.symbol,
           $.property_expression,
           $.fraction,
           $.decimal_number,
           $.unsigned_integer,
           $.punctuation,
-          $.dynamic,
+          $.hairpin,
           $.ligature,
           $.instrument_string_number,
           $.string,
@@ -110,6 +115,17 @@ module.exports = grammar({
           ">>",
         ),
 
+      note: ($) =>
+        prec.right(
+          1,
+          seq(
+            token(/[abcdefg](?:is|isis|es|eses)?(?:'*|,*)/),
+            optional($.duration),
+          ),
+        ),
+
+      rest: ($) => prec.right(seq(choice("r", "s", "R"), optional($.duration))),
+
       chord: ($) =>
         seq(
           "<",
@@ -125,6 +141,25 @@ module.exports = grammar({
             ),
           ),
           ">",
+          optional($.duration),
+        ),
+
+      duration: ($) =>
+        prec.left(
+          seq(
+            token(/\d+\.?/),
+            optional(
+              prec.right(
+                seq(
+                  token("*"),
+                  alias(
+                    choice($.fraction, $.unsigned_integer),
+                    $.duration_scale,
+                  ),
+                ),
+              ),
+            ),
+          ),
         ),
 
       // An additional single character is needed to parse, for example:
@@ -179,7 +214,6 @@ module.exports = grammar({
           "?", // cautionary accidental
           "!", // reminder accidental, staccatissimo, figured-bass natural
           ".", // property access, staccato
-          "*", // multiplication
           "-", // place neutrally, tenuto, figured-bass flat
           "^", // place above, marcato
           "_", // place below, portato
@@ -203,7 +237,7 @@ module.exports = grammar({
           "@",
         ),
 
-      dynamic: ($) => choice("\\<", "\\>", "\\!"),
+      hairpin: ($) => choice("\\<", "\\>", "\\!"),
 
       // https://lilypond.org/doc/Documentation/notation/ancient-notation_002d_002dcommon-features#ligatures
       ligature: ($) => choice("\\[", "\\]"),
